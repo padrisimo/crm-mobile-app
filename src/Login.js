@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {
-  Platform,
   StyleSheet,
   Text,
   View
 } from 'react-native';
 import { MKTextField, MKColor, MKButton } from 'react-native-material-kit';
 import Loader from './Loader';
+import firebase from 'firebase';
 
 const LoginButton = MKButton.coloredButton()
   .withText('LOGIN')
@@ -16,11 +16,38 @@ export default class Login extends Component {
   state = {
     email: '',
     password: '',
+    error: '',
     loading: false
   };
 
   onButtonPress = () => {
-    console.warn('clicked button!!!');
+    const { email, password } = this.state;
+    this.setState({ error: '', loading: true });
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(this.onAuthSucces)
+      .cath(() => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then(this.onAuthSucces)
+          .cath(this.onAuthFailed)
+          
+      })
+  }
+
+  onAuthSucces = () => {
+    this.setState({
+      email: '',
+      password: '',
+      error: '',
+      loading: false
+    })
+  }
+
+  onAuthFailed = () => {
+    this.setState({
+      error: 'Authentication Failed!',
+      loading: false
+    })
   }
 
   renderLoader = () => {
