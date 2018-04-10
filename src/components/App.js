@@ -6,10 +6,14 @@ import {
   View
 } from 'react-native';
 import firebase from 'firebase';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import Login from './Login';
 import Loader from './Loader';
 import PeopleList from './PeopleList';
+import reducers from '../reducers/PeopleReducer';
 
+const store = createStore(reducers);
 
 export default class App extends Component {
   state = { loggedIn: null };
@@ -28,12 +32,12 @@ export default class App extends Component {
       if (user) {
         this.setState({ loggedIn: true });
       } else {
-        this.setState({ loggedIn: false });        
+        this.setState({ loggedIn: false });
       }
     })
   }
 
-  renderIntialView(){
+  renderIntialView() {
     switch (this.state.loggedIn) {
       case true:
         return <PeopleList />;
@@ -46,9 +50,11 @@ export default class App extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        {this.renderIntialView()}
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          {this.renderIntialView()}
+        </View>
+      </Provider>
     );
   }
 }
