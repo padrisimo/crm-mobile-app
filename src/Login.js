@@ -14,18 +14,18 @@ const LoginButton = MKButton.coloredButton()
 export default class Login extends Component {
   state = {
     email: '',
-    password:''
+    password: ''
   };
-  
-  onButtonPress(){
+
+  onButtonPress() {
     console.log('clicked button!!!');
   }
 
   render() {
-    const {form, fieldStyles, loginButtonArea, errorMessage } = styles;
+    const { form, fieldStyles, container, welcome, loginButtonArea, errorMessage } = styles;
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
+      <View style={container}>
+        <Text style={welcome}>
           Welcome to CRM!
         </Text>
         <MKTextField
@@ -41,7 +41,7 @@ export default class Login extends Component {
           textInputStyle={fieldStyles}
           placeholder={'password...'}
           tintColor={MKColor.Teal}
-          password={true}          
+          password={true}
         />
         <Text style={errorMessage}>
           {this.state.error}
