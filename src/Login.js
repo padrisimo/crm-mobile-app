@@ -6,6 +6,7 @@ import {
   View
 } from 'react-native';
 import { MKTextField, MKColor, MKButton } from 'react-native-material-kit';
+import Loader from './Loader';
 
 const LoginButton = MKButton.coloredButton()
   .withText('LOGIN')
@@ -14,19 +15,28 @@ const LoginButton = MKButton.coloredButton()
 export default class Login extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    loading: false
   };
 
-  onButtonPress() {
-    console.log('clicked button!!!');
+  onButtonPress = () => {
+    console.warn('clicked button!!!');
+  }
+
+  renderLoader = () => {
+    if (this.state.loading) {
+      return <Loader size="large" />
+    } else {
+      return <LoginButton onPress={this.onButtonPress} />
+    }
   }
 
   render() {
-    const { form, fieldStyles, container, welcome, loginButtonArea, errorMessage } = styles;
+    const { form, fieldStyles, loginButtonArea, errorMessage } = styles;
     return (
-      <View style={container}>
-        <Text style={welcome}>
-          Welcome to CRM!
+      <View style={form}>
+        <Text>
+          Login or Create an account
         </Text>
         <MKTextField
           text={this.state.email}
@@ -47,7 +57,7 @@ export default class Login extends Component {
           {this.state.error}
         </Text>
         <View style={loginButtonArea}>
-          <LoginButton onPress={this.onButtonPress.bind(this)} />
+          {this.renderLoader()}
         </View>
       </View>
     );
@@ -55,12 +65,6 @@ export default class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
