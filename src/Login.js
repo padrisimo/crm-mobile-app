@@ -26,11 +26,10 @@ export default class Login extends Component {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(this.onAuthSucces)
-      .cath(() => {
+      .catch(() => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(this.onAuthSucces)
-          .cath(this.onAuthFailed)
-          
+          .catch(this.onAuthFailed)
       })
   }
 
@@ -92,11 +91,6 @@ export default class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
   form: {
     paddingBottom: 10,
     width: 200
@@ -108,5 +102,11 @@ const styles = StyleSheet.create({
   },
   loginButtonArea: {
     marginTop: 20
+  },
+  errorMessage: {
+    marginTop: 15,
+    fontSize: 15,
+    color: MKColor.Red,
+    alignSelf: 'center'
   }
 });
