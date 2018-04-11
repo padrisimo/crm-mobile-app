@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { ListView, Text, View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux';
-import PersonItem from './PersonItem';
+import PeopleItem from './PeopleItem';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,18 +16,18 @@ const styles = StyleSheet.create({
 class PeopleList extends Component {
   componentWillMount() {
     const ds = new ListView.DataSource({
-      rowHaschanged: (r1, r2) => r1 !== r2
+      rowHasChanged: (r1, r2) => r1 !== r2
     });
     this.dataSource = ds.cloneWithRows(this.props.people);
   }
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <ListView 
           enableEmptySections
           dataSource={this.dataSource}
           renderRow={(rowData) => 
-            <PersonItem people={rowData} />
+            <PeopleItem people={rowData} />
           }
         />
       </View>
