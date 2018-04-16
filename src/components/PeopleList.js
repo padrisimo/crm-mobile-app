@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import { ListView, Text, View, StyleSheet } from 'react-native'
+import React, { Component } from 'react';
+import { ListView, Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/EvilIcons';
 import PeopleItem from './PeopleItem';
 
 const styles = StyleSheet.create({
@@ -14,6 +15,19 @@ const styles = StyleSheet.create({
 });
 
 class PeopleList extends Component {
+  static navigationOptions = {
+    tabBar: {
+      label: 'People',
+      icon: ({ tintColor }) => (
+
+        <Icon
+          name={'user'}
+          size={50}
+          style={[{ color: tintColor }, styles.icon]}
+        />
+      )
+    }
+  }
   componentWillMount() {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2

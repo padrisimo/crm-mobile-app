@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import Login from './Login';
 import Loader from './Loader';
-import PeopleList from './PeopleList';
+import Navigation from './Navigation';
 import reducers from '../reducers/PeopleReducer';
 
 const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
@@ -40,7 +40,7 @@ export default class App extends Component {
   renderIntialView() {
     switch (this.state.loggedIn) {
       case true:
-        return <PeopleList />;
+        return <Navigation />;
       case false:
         return <Login />;
       default:
