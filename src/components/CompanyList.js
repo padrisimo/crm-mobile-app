@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexWrap: 'wrap',
-    paddingTop: 10,
+    paddingTop: 20,
     backgroundColor: '#e5e5e5',
   },
   welcome: {
@@ -19,17 +19,15 @@ const styles = StyleSheet.create({
 
 class CompanyList extends Component {
   static navigationOptions = {
-    tabBar: {
-      label: 'Companies',
-      icon: ({ tintColor }) => (
+    tabBarLabel: 'Companies',
+    tabBarIcon: ({ tintColor }) => (
 
-        <Icon
-          name={'business'}
-          size={45}
-          style={[{ color: tintColor }, styles.icon]}
-        />
-      )
-    }
+      <Icon
+        name={'business'}
+        size={45}
+        style={[{ color: tintColor }, styles.icon]}
+      />
+    )
   }
   render() {
     return (

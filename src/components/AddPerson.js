@@ -16,22 +16,20 @@ const styles = StyleSheet.create({
     margin: 10
   },
   icon: {
-    paddingBottom: 2
+    paddingBottom: 5,
   }
 });
 
 class AddPerson extends Component {
   static navigationOptions = {
-    tabBar: {
-      label: 'Add Person',
-      icon: ({ tintColor }) => (
-        <Icon
-          name={'plus'}
-          size={70}
-          style={[{ color: tintColor }, styles.icon]}
-        />
-      )
-    }
+    tabBarLabel: 'Add Person',
+    tabBarIcon: ({ tintColor }) => (
+      <Icon
+        name={'plus'}
+        size={70}
+        style={[{ color: tintColor }, styles.icon]}
+      />
+    )
   }
   render() {
     return (

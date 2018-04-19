@@ -12,7 +12,7 @@ const Navigation = TabNavigator({
     activeTintColor: 'white',
     inactiveTintColor: '#80cbc4',
     swipeEnabled: true,
-    showLabel: true,
+    showLabel: false,
     style: {
       backgroundColor: '#26a69a'
     }

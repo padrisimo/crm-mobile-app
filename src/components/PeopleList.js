@@ -16,17 +16,15 @@ const styles = StyleSheet.create({
 
 class PeopleList extends Component {
   static navigationOptions = {
-    tabBar: {
-      label: 'People',
-      icon: ({ tintColor }) => (
+      tabBarLabel: 'People',
+      tabBarIcon: ({ tintColor }) => (
 
         <Icon
           name={'user'}
           size={50}
-          style={[{ color: tintColor }, styles.icon]}
+          style={{ color: tintColor }}
         />
       )
-    }
   }
   componentWillMount() {
     const ds = new ListView.DataSource({

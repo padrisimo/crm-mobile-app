@@ -42,18 +42,18 @@ export default class App extends Component {
       case true:
         return <Navigation />;
       case false:
-        return <Login />;
+        return <View style={styles.container}><Login /></View>;
       default:
-        return <Loader size="large" />
+        return <View style={styles.container}><Loader size="large" /></View>;
     }
   }
 
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
+        
           {this.renderIntialView()}
-        </View>
+        
       </Provider>
     );
   }
