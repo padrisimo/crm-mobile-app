@@ -1,4 +1,4 @@
-package com.crm;
+package com.crm2;
 
 import android.app.Application;
 
