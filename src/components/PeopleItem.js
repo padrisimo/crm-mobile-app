@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { getTheme } from 'react-native-material-kit';
 import Icon from 'react-native-vector-icons/EvilIcons';
@@ -9,14 +9,18 @@ const theme = getTheme();
 
 const PeopleItem = props => {
   return (
-    <View style={[theme.cardStyle, styles.card]}>
-      <Image
-        source={{uri: '/Users/adrianfernandezchamizo/projects/crm/src/images/background.jpg'}} 
-        style={[theme.cardImageStyle, styles.image]} />
-      <Icon name={'user'} size={100} style={styles.icon} />
-      <Text style={[theme.cardTitleStyle, styles.title]}>{props.people.first_name} {props.people.last_name}</Text>
-      <Text style={[theme.cardActionStyle, styles.action]}>{props.people.company}</Text>
-    </View>
+    <TouchableWithoutFeedback
+      onPress={() => props.selectedPerson(people)}
+    >
+      <View style={[theme.cardStyle, styles.card]}>
+        <Image
+          source={{ uri: '/Users/adrianfernandezchamizo/projects/crm2/src/images/background.jpg' }}
+          style={[theme.cardImageStyle, styles.image]} />
+        <Icon name={'user'} size={100} style={styles.icon} />
+        <Text style={[theme.cardTitleStyle, styles.title]}>{props.people.first_name} {props.people.last_name}</Text>
+        <Text style={[theme.cardActionStyle, styles.action]}>{props.people.company}</Text>
+      </View>
+    </TouchableWithoutFeedback>
   )
 }
 
