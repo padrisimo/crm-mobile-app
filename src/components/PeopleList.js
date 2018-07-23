@@ -29,17 +29,25 @@ class PeopleList extends Component {
   }
   renderInitialView() {
     const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
+      rowHasChanged: (r1, r2) => r1 !== r2,
     });
     this.dataSource = ds.cloneWithRows(this.props.people);
 
-    return this.props.detailView ? <PeopleDetail /> : <ListView
-      enableEmptySections
-      dataSource={this.dataSource}
-      renderRow={(rowData) =>
-        <PeopleItem people={rowData} />
-      }
-    />
+    if (this.props.detailView === true) {
+      return (
+        <PeopleDetail />
+      );
+    } else {
+      return (
+        <ListView 
+          enableEmptySections={true}
+          dataSource={this.dataSource}
+          renderRow={(rowData) => 
+            <PeopleItem people={rowData} />
+          }
+        />
+      );
+    }
   }
 
   render() {
